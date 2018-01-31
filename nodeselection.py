@@ -10,6 +10,7 @@ from xlrd import open_workbook
 import pandas as pd
 import openpyxl
 import datetime
+import os
 
 def prog():
 	today = datetime.date.today()
@@ -97,7 +98,8 @@ def prog():
 		#print("distance " ,dist)
 	fo = open('value2.txt','r')
 	#print(speedval)
-	if(int(fo.read())==0):
+	#if(int(fo.read())==0):
+	if(~os.path.isfile('419_googleapi'+str(today)+'.xlsx')):
 		fo.close()
 		df = pd.DataFrame({'Node':Node,'Best Guess Speed':speedval1,'Optimistic Speed':speedval2,'Pessimistic Speed':speedval3, 'Time':Time})
 		book_ro = pd.ExcelWriter('419_googleapi'+str(today)+'.xlsx', engine='xlsxwriter')

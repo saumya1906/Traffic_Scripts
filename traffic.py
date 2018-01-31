@@ -9,7 +9,7 @@ from xlrd import open_workbook
 import pandas as pd
 import openpyxl
 import datetime
-
+import os
 
 def prog():
 	today = datetime.date.today()
@@ -59,9 +59,9 @@ def prog():
 	#pi=3.14
 	#l = [11,12,13]
 	#k=1
-	fo = open('value.txt','r')
-	if(int(fo.read())==0):
-		fo.close()
+	#fo = open('value.txt','r')
+	if(~os.path.isfile('position_'+str(today)+'_'+'0'+'.xlsx')):
+		#fo.close()
 		for i in range(0,len(result['response'])):
 			lat = [result['response'][i]['latitude']]
 			longi = [result['response'][i]['longitude']]
@@ -75,11 +75,11 @@ def prog():
 			#book_ro = open_workbook('position_eve'+str(i)+'.xlsx', on_demand=True)
 			#book = copy(book_ro)  # creates a writeable copy
 			
-		fo = open('value.txt','w')
-		fo.write('1')
-		fo.close()
+		#fo = open('value.txt','w')
+		#fo.write('1')
+		#fo.close()
 	else:
-		fo.close()
+		#fo.close()
 		for i in range(0,len(result['response'])):
 			book_ro = openpyxl.load_workbook('position_'+str(today)+'_'+str(i)+'.xlsx')
 			#book = copy(book_ro)  # creates a writeable copy
