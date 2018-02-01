@@ -30,6 +30,9 @@ def prog():
 	url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins='+str(arrayofnodelat[1])+','+str(arrayofnodelong[1])+'&destinations='+str(arrayofnodelat[1]+0.0011)+','+str(arrayofnodelong[1]+0.0011)+'&departure_time=now&traffic_model=best_guess&mode=driving&key=AIzaSyD6dV47_SQcIPLLkuDiTW1WRI3LjIgqHXE'
 	res=requests.get(url)
 	result1=res.json()
+	with open('425down.json','a') as fp:
+		json.dump(result1,fp)
+		fp.close()
 	# print(result1)
 	a = result1['rows'][0]['elements'][0]['duration_in_traffic']['value']
 	time=float(a)
@@ -45,6 +48,9 @@ def prog():
 		url = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins='+str(arrayofnodelat[i])+','+str(arrayofnodelong[i])+'&destinations='+str(arrayofnodelat[i-1])+','+str(arrayofnodelong[i-1])+'&departure_time=now&traffic_model=best_guess&mode=driving&key=AIzaSyD6dV47_SQcIPLLkuDiTW1WRI3LjIgqHXE'
 		res=requests.get(url)
 		result1=res.json()
+		with open('425down.json','a') as fp:
+			json.dump(result1,fp)
+			fp.close()
 		#print(result1)
 		a = result1['rows'][0]['elements'][0]['duration_in_traffic']['value']
 		time=float(a)
